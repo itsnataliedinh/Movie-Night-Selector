@@ -1,0 +1,396 @@
+:root {
+    --tv-brown-dark: #362b23;
+    --tv-brown-mid:  #564334;
+    --tv-brown-accent:#746f5d;
+    --tv-screen-bg:  #e1ddd3;
+    --cream:  #f8f4dc;
+    --border-radius: 40px;
+  }  
+
+html{
+    background-color: #37322f;
+    height: 100%;
+  } 
+ body{    
+    font-family: "Roboto Mono", monospace;
+    font-optical-sizing: auto;
+    font-style: normal;
+    margin: 0%;     
+    height: 100%;
+    display: flex;
+    flex-direction: column; 
+    overflow: hidden;       
+ }
+ header{
+     top: 0;
+     left: 0;
+     z-index: 10;
+     background-color: var(--tv-brown-dark);;
+     padding: 1% 1% 1% 0.5%;
+     height: 3rem;
+     box-shadow: 0 2px 0 rgba(0,0,0,0.4);
+ }
+ .whole-nav-bar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ }
+ #title{
+     display: flex;
+     justify-content: space-between;  
+ }
+ #nav-right{
+     display: flex;
+ }
+ #title a{
+    font-family: lores-9-narrow, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+/* adobe font won't link properly? */
+
+    font-size: 1.8rem;
+    padding: 8px 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    color: rgb(255, 247, 239);
+ }
+ #nav-right a{
+    font-size: 1.2rem;
+    font-weight: 500;
+     padding: 8px 30px;
+     background: none;
+     border: none;
+     cursor: pointer;
+     text-decoration: none;
+     color:rgb(255, 255, 255);
+ }
+ footer{
+    flex-shrink: 0;
+    height: 50px;
+    background: var(--tv-brown-dark);
+    color: var(--cream);
+    padding: 0.75rem 1.5rem;
+    border-top: 3px solid #2a1a10;
+    border-bottom: none;
+    box-shadow: 0 -2px 0 rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+ }
+
+.tv-frame {
+    flex: 1;  
+    margin-left: 2%;
+    margin-right: 2%;
+    display: grid;
+    grid-template-columns: 4fr 1fr;   
+    gap: 1rem;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.6), inset 0 0 0 3px #2a1a10;
+    background-color: #767164;
+    padding: 2rem;
+    overflow: hidden; 
+}
+#main-content{ /* Hide main content until intro video finishes */
+    padding: 3rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+.screen{
+    position: relative;
+    background: var(--tv-screen-bg);
+    border-style:groove;
+    border-width: 5px;
+    border-color:  #9e9a8f;
+    border-radius: var(--border-radius);
+    overflow-y: auto;
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
+    overflow-y: auto; /* scroll inside screen onlys*/
+    overflow-x: hidden;
+}
+/* Intro overlay fills the entire screen area*/
+#tv-intro-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    cursor: pointer;
+
+    opacity: 1;
+    transition: opacity 0.6s ease;
+    /* fade video into screen */
+}
+#power-prompt {
+    position: absolute;
+    color: var(--cream);
+    font-family: lores-9-plus-narrow, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--cream);
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 12px rgba(0,0,0,0.7);
+}
+/* Video fills the whole screen area */
+#static-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* make sure fills frame */
+    display: none; /*hide until clicked */
+}
+
+
+/* SIDEBAR*/
+aside{
+    background-color: var(--tv-brown-mid);
+    padding: 1rem;
+    border: #000000;
+    border-width: 5px;
+    border-radius: 20px;
+    box-shadow: inset 0 0 18px rgba(0,0,0,0.8);
+    display: flex;
+    flex-direction: column;
+}
+  
+.sidebar-title {
+    margin: 0 0 0.6rem;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--cream);
+  }
+/* tabs-- collapsible filters*/
+.filter-group {
+    border-radius: 12px;
+    background: rgba(62, 50, 47, 0.646);
+    margin-bottom: 0.8rem;
+    padding: 0.2rem 0.4rem 0.4rem;
+  }
+/* filter labels*/
+.filter-group summary { 
+    list-style: none;
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 0.06rem;
+    color:rgb(213, 213, 213);
+    padding: 0.3rem 0.4rem;
+    border-radius: 100px;
+}
+.filter-group summary i {
+    transform: rotate(180deg);
+    transition: 0.2s ease;
+}
+.filter-group[open] { /* actuve filters turn lighter*/
+    background-color: rgba(213, 200, 195, 0.646);
+}
+.filter-group[open] summary{
+    color: #231d16;
+}
+.filter-group summary::-webkit-details-marker{
+    display: hide; 
+    /* gets rid of default arrows --*/
+}
+
+.filter-options {
+    margin-top: 0.5rem;
+    padding:0%, 2%, 0%, 2%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 0.1rem;
+    font-size: 1rem;
+    line-height: 1rem;
+}
+  
+.filter-options label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 0.25rem;
+}
+/* language input */
+.filter-label {
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 0.85rem;
+    color: #e0d0bf;
+    width:auto;
+}
+  
+#language-input {
+    width: 90%;
+    margin-top: 0.25rem;
+    padding: 0.35rem 0.5rem;
+    border-radius: 100px;
+    border: 1px solid #7c644a;
+    background: rgba(255, 239, 239, 0.9);
+    color: var(--tv-cream);
+    font-size: 0.9rem;
+}
+  
+  /* Clear filters button */
+.clear-filters {
+    margin-top: 0.6rem;
+    width: 100%;
+    padding: 0.4rem 0.6rem;
+    border-radius: 999px;
+    border: 1px solid #c69765;
+    background: transparent;
+    color: var(--tv-cream);
+    color: #f8ebcd;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+  
+/* MAIN content inside screen */
+.getStarted h2 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.6rem;
+}
+.getStarted p {
+    margin: 0 0 1rem;
+    font-size: 0.95rem;
+    color: #231d16;
+}
+
+.searchBar {
+    display: flex;
+    margin-bottom: 1.2rem;
+}
+  
+.searchBar input {
+    width: 300px;
+    max-width: 100%;    
+    padding: 0.6rem 0.8rem;
+    border-radius: 25px 0 0 25px; /* right side round only, connct */
+    border: 1px solid #5a4c44;
+    background: rgba(255, 253, 240, 0.9);
+    color: var(--tv-brown-dark);
+}
+  
+.searchBar input::placeholder {
+    color: #43372e;
+}
+  
+.searchBar button {
+    padding: 0.6rem 1.1rem;
+    border-radius: 0 25px 25px 0; /* left side round only, connct */
+    border: 100px;
+    background: var(--tv-brown-dark);
+    color: var(--cream);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* RESULTS LAYOUT*/
+.results {
+    margin-top: 9% 2% 4% 2%;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 4rem;
+    align-items: flex-start;
+}
+  
+.poster {
+    background: rgba(0,0,0,0.4);
+    border-radius: 12px;
+    max-width: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 6%;
+}
+  
+.poster img {
+    max-height: 100%;
+    border-radius: 5px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.7);
+}
+  
+.text-content h3 {
+    margin: 0;
+    font-size: 2.3rem;
+}
+/*  movie title: 
+    font-family: "lores-9-plus-narrow", sans-serif;
+    font-weight: 400;
+    font-style: normal; */
+  
+.meta {
+    margin: 0.3rem 0;
+    font-size: 0.9rem;
+    color: var(--tv-brown-dark);
+}
+  
+#streaming-sites {
+    margin-top: 0.8rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  
+/* ticket section */
+.print-ticket {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #3b2f37;
+}
+  
+#print-ticket h3 {
+    margin-top: 0;
+}
+  
+#print-ticket canvas,
+.print-ticket canvas {
+    display: block;
+    margin: 0.5rem 0;
+    background: #f9f4ea;
+    border-radius: 8px;
+}
+  
+#print-ticket button,
+.print-ticket button {
+    margin-top: 2%;
+    padding: 0.5rem 1rem;
+    border-radius: 100px;
+    border: 1px solid #f5d2a6;
+    background: var(--tv-brown-dark);
+    color: var(--cream);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+/* Responsivenes - card stack */
+@media (max-width: 900px) {
+    .tv-frame {
+      grid-template-columns: 1fr;
+    }
+    .tv-sidebar {
+      order: -1;
+      margin-bottom: 0.5rem;
+    }
+    .results {
+      grid-template-columns: 1fr;
+    }
+    /* TO-DO later: need to make whole filter bar collapsible for phone OR allow all of .tv-frame to scroll not just screen*/
+  }
+  
+    
+  
+ 
