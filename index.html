@@ -22,10 +22,25 @@
               <a href="index.html">Movie Night Selector</a>
             </div>
             <div id="nav-right">
-              <a href="info.html">Info</a>
+              <button href="#popup-box" id="infoBtn">Info</button>
             </div>
         </div> 
     </header>
+
+     <!-- TODO: make pop up info box- create modal div, hide/ show -->
+    <div id="infoMode" class="modal">
+        <div class="info-content">
+          <span class="close">&times;</span>
+          <h2>Bring back the whimsy of movies.</h2>
+          <p>
+            Remember turning on the T.V. and watching whatever was on the channel? Or having to rewatch the same DVDs until you could make it to the rental store to swap for others? While watching films has been more convenient than ever, the infinite choice is almost too overwhelming. Now we spend more time choosing movies than watching them. </p>
+            <p> This site helps you discover random movies based on filters like genre, decade, rating, language, and more. It's a tool to find older films and forgotten gems. Hopefully you'll find a new favorite film soon. 
+            </p>
+            <div class="credit">
+                <p>This site is using the <a href="https://www.omdbapi.com/" target="_blank">Opensource Movie Database</a> API.</p>
+            </div>
+        </div>
+    </div>
 
    
     <div class="tv-frame">
@@ -64,14 +79,19 @@
                         <div class="director-cast"></div>
                         <div class="synopsis"></div>
                     </div>
-                    <div class="streaming">
+                    <div id="streaming-sites">
 
                     </div>
                 </section>
 
+                <div class="shuffle">
+                    <button id="shuffle-btn" type="button">SHUFFLE</button>
+                    <p id="shuffle-prompt">Generating a random movie</p>
+                </div>
+
                 <section class="print-ticket">
                     <h3>Your Movie Ticket</h3>
-                    <canvas id="ticket-canvas" width="600" height="250"></canvas>
+                    <canvas id="ticket-canvas" width="1600" height="650"></canvas>
                     <button id="download-ticket-btn">Download Ticket</button>
                 </section>
             </section>
@@ -113,6 +133,8 @@
                             <label><input type="checkbox" name="genre" value="Comedy"> Comedy</label>
                             <label><input type="checkbox" name="genre" value="Romance"> Romance</label>
                             <label><input type="checkbox" name="genre" value="Action"> Action</label>
+                            <label><input type="checkbox" name="genre" value="Family"> Family</label>
+                            <label><input type="checkbox" name="genre" value="Animation"> Animation</label>
                             <label><input type="checkbox" name="genre" value="Thriller"> Thriller</label>
                             <label><input type="checkbox" name="genre" value="Romance"> Crime</label>
                             <label><input type="checkbox" name="genre" value="Horror"> Horror</label>
@@ -168,9 +190,12 @@
                 <button type="button" id="clear-filters-btn" class="clear-filters">Clear all filters</button>
             </form>
             <!-- to-do: add in decorative TV control dials -->
+             <div class="dial-images">
+                <img src="assets/dial-1.png">
+                <img src="assets/dial-2.png">
+            </div>
         </aside>
 
-        <!-- to-do: add in play/pause buttons mimic TV -->
     </div>
 
 
@@ -178,11 +203,13 @@
     
     <script src="intro.js" defer></script>
 
+
+    <footer> <!-- needs to be fixed -->
+        <p>Made by Natalie Dinh in 2025.</p>
+        <P>Image copyrights to their respective owners.</p>
+    </footer>
+
 </body>
 
-<footer> <!-- needs to be fixed -->
-    <p>Made by Natalie Dinh in 2025.</p>
-    <P>Image copyrights to their respective owners.</p>
-</footer>
 
 </html>
