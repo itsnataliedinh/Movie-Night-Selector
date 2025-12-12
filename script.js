@@ -33,7 +33,7 @@ const filtersForm = document.getElementById("filters-form");
 const clearFiltersBtn = document.getElementById("clear-filters-btn");
 const shuffleBtn = document.getElementById("shuffle-btn");
 const ticketTemplate = new Image();
-ticketTemplate.src = "large-ticket.png";
+ticketTemplate.src = "./large-ticket.png";
 
 // need to update results here later 
 const posterContainer = document.querySelector(".poster");
